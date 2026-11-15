@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Temperature Converter</title>
+</head>
+<body>
+  <h1>Celsius to Fahrenheit</h1>
+
+  <form id="converter">
+    <label for="celsius">Temperature in °C</label>
+    <input id="celsius" type="number" step="any" required>
+    <button type="submit">Convert</button>
+    <output id="result" for="celsius"></output>
+  </form>
+
+  <script type="module">
+    import { celsiusToFahrenheit } from './converter.mjs';
+
+    const form = document.querySelector('#converter');
+    const input = document.querySelector('#celsius');
+    const result = document.querySelector('#result');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const fahrenheit = celsiusToFahrenheit(input.valueAsNumber);
+      result.textContent = `${fahrenheit.toFixed(2)} °F`;
+    });
+  </script>
+</body>
+</html>
